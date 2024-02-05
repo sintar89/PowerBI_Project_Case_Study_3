@@ -1,0 +1,2289 @@
+{
+  "compatibilityLevel": 1567,
+  "model": {
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"FACT_Order_Data\",\"Sample File\",\"Parameter1\",\"Transform Sample File\",\"Transform File\",\"Mapping_Helper\",\"FACT_Financial_Data\",\"DIM_Type\",\"DIM_Subcategory\",\"DIM_Mapping\",\"DIM_Accounts\",\"_Measures\",\"DIM_Markets\",\"DIM_SAP_Account\",\"DIM_Product\",\"dataSource\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "1"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.124.1805.0 (23.12)"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
+    "culture": "en-US",
+    "cultures": [
+      {
+        "name": "en-US",
+        "linguisticMetadata": {
+          "content": {
+            "DynamicImprovement": "HighConfidence",
+            "Language": "en-US",
+            "Version": "1.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "fastCombine": true,
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [
+      {
+        "name": "Sample File",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Binary"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Folder.Files(\"C:\\Users\\sinta\\Documents\\PowerBI Kurs\\CS5\\data_sources\\order_data\"),",
+          "    Navigation1 = Source{0}[Content]",
+          "in",
+          "    Navigation1"
+        ],
+        "kind": "m",
+        "lineageTag": "b76a7450-151a-4fa0-b096-ef29b511bd9e",
+        "queryGroup": "Transform File from order_data\\Helper Queries"
+      },
+      {
+        "name": "Parameter1",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Binary"
+          }
+        ],
+        "expression": "#\"Sample File\" meta [IsParameterQuery=true, BinaryIdentifier=#\"Sample File\", Type=\"Binary\", IsParameterQueryRequired=true]",
+        "kind": "m",
+        "lineageTag": "1d54797c-1455-4788-bdd9-e5729184533f",
+        "queryGroup": "Transform File from order_data\\Helper Queries"
+      },
+      {
+        "name": "Transform Sample File",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Csv.Document(Parameter1,[Delimiter=\"\t\", Columns=5, Encoding=1250, QuoteStyle=QuoteStyle.None])",
+          "in",
+          "    Source"
+        ],
+        "kind": "m",
+        "lineageTag": "315b952c-8adf-4fc6-a4c1-2534000eff4d",
+        "queryGroup": "Transform File from order_data"
+      },
+      {
+        "name": "Transform File",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Function"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = (Parameter1 as binary) => let",
+          "    Source = Csv.Document(Parameter1,[Delimiter=\"\t\", Columns=5, Encoding=1250, QuoteStyle=QuoteStyle.None])",
+          "in",
+          "    Source",
+          "in",
+          "    Source"
+        ],
+        "kind": "m",
+        "lineageTag": "0a50df47-d85f-48d4-b3e8-d625e8443455",
+        "mAttributes": "[ FunctionQueryBinding = \"{\"\"exemplarFormulaName\"\":\"\"Transform Sample File\"\"}\" ]",
+        "queryGroup": "Transform File from order_data\\Helper Queries"
+      },
+      {
+        "name": "Mapping_Helper",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Csv.Document(File.Contents(\"C:\\Users\\sinta\\Documents\\PowerBI Kurs\\CS5\\data_sources\\Mapping.txt\"),[Delimiter=\"\t\", Columns=2, Encoding=1250, QuoteStyle=QuoteStyle.None]),",
+          "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Subcategory\", type text}, {\"Product Code\", type text}})",
+          "in",
+          "    #\"Changed Type\""
+        ],
+        "kind": "m",
+        "lineageTag": "7689ee80-f768-453d-844e-aa27a3477211",
+        "queryGroup": "Helpers"
+      },
+      {
+        "name": "dataSource",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ],
+        "expression": "\"C:\\Users\\sinta\\Documents\\PowerBI Kurs\\CS5\\data_sources\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]",
+        "kind": "m",
+        "lineageTag": "6a272417-dabb-4456-ab5d-732125489019",
+        "queryGroup": "Parameters"
+      }
+    ],
+    "queryGroups": [
+      {
+        "annotations": [
+          {
+            "name": "PBI_QueryGroupOrder",
+            "value": "0"
+          }
+        ],
+        "folder": "Transform File from order_data"
+      },
+      {
+        "annotations": [
+          {
+            "name": "PBI_QueryGroupOrder",
+            "value": "0"
+          }
+        ],
+        "folder": "Transform File from order_data\\Helper Queries"
+      },
+      {
+        "annotations": [
+          {
+            "name": "PBI_QueryGroupOrder",
+            "value": "2"
+          }
+        ],
+        "folder": "DIM"
+      },
+      {
+        "annotations": [
+          {
+            "name": "PBI_QueryGroupOrder",
+            "value": "3"
+          }
+        ],
+        "folder": "FACT"
+      },
+      {
+        "annotations": [
+          {
+            "name": "PBI_QueryGroupOrder",
+            "value": "1"
+          }
+        ],
+        "folder": "Helpers"
+      },
+      {
+        "annotations": [
+          {
+            "name": "PBI_QueryGroupOrder",
+            "value": "4"
+          }
+        ],
+        "folder": "Parameters"
+      }
+    ],
+    "relationships": [
+      {
+        "name": "f51f6e48-acb4-4757-92fe-0017ac142f97",
+        "fromColumn": "Type ID",
+        "fromTable": "FACT_Financial_Data",
+        "toColumn": "Type ID",
+        "toTable": "DIM_Type"
+      },
+      {
+        "name": "ee0affdc-3638-4c20-b35d-b5b0b429f70f",
+        "fromColumn": "SAP Account ID",
+        "fromTable": "FACT_Order_Data",
+        "toColumn": "SAP Account ID",
+        "toTable": "DIM_SAP_Account"
+      },
+      {
+        "name": "15e539f6-5227-4f7d-aa85-fe9b9aea2306",
+        "fromColumn": "Product ID",
+        "fromTable": "FACT_Order_Data",
+        "toColumn": "Product ID",
+        "toTable": "DIM_Product"
+      },
+      {
+        "name": "ab85e71a-e899-45f2-8e21-1031a73c0044",
+        "fromColumn": "Market ID",
+        "fromTable": "FACT_Order_Data",
+        "toColumn": "Market ID",
+        "toTable": "DIM_Markets"
+      },
+      {
+        "name": "b9d8f731-84eb-42c1-804c-b2a094804b86",
+        "fromColumn": "Market ID",
+        "fromTable": "FACT_Financial_Data",
+        "toColumn": "Market ID",
+        "toTable": "DIM_Markets"
+      },
+      {
+        "name": "09f8033b-c82a-413b-a665-7bc90b59cb0d",
+        "fromColumn": "Account ID",
+        "fromTable": "FACT_Financial_Data",
+        "toColumn": "Account ID",
+        "toTable": "DIM_Accounts"
+      },
+      {
+        "name": "4e59cde3-9fa5-4afb-a458-d61a537259d4",
+        "fromColumn": "Subcategory ID",
+        "fromTable": "FACT_Financial_Data",
+        "toColumn": "Subcategory ID",
+        "toTable": "DIM_Subcategory"
+      },
+      {
+        "name": "c47a12de-66f4-43c1-9075-072e416eadf3",
+        "fromColumn": "Subcategory ID",
+        "fromTable": "DIM_Mapping",
+        "toColumn": "Subcategory ID",
+        "toTable": "DIM_Subcategory"
+      },
+      {
+        "name": "63a94ae1-8dc5-41f0-87aa-17be268e1a36",
+        "crossFilteringBehavior": "bothDirections",
+        "fromCardinality": "one",
+        "fromColumn": "Product Code",
+        "fromTable": "DIM_Mapping",
+        "toColumn": "Product Code",
+        "toTable": "DIM_Product"
+      },
+      {
+        "name": "fc574713-56d5-4512-8b4a-242f72841a2c",
+        "fromColumn": "Order Date",
+        "fromTable": "FACT_Order_Data",
+        "toColumn": "Date",
+        "toTable": "DIM_Date"
+      },
+      {
+        "name": "748ed684-8d1a-1fe6-188c-5205977de06a",
+        "fromColumn": "Date",
+        "fromTable": "FACT_Financial_Data",
+        "toColumn": "Date",
+        "toTable": "DIM_Date"
+      }
+    ],
+    "sourceQueryCulture": "pl-PL",
+    "tables": [
+      {
+        "name": "FACT_Order_Data",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Order Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isCustom\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy-mm-dd",
+            "isHidden": true,
+            "lineageTag": "b1c20104-589f-431e-93db-7c03bc0bae67",
+            "sourceColumn": "Order Date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Quantity",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e7acfeec-29ef-415f-af69-2da5b66d02d2",
+            "sourceColumn": "Quantity",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "SAP Account ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "3ec22141-1513-4202-aa00-259406782282",
+            "sourceColumn": "SAP Account ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Product ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "8ac316c2-88a7-44ca-b294-1e19fcdcb386",
+            "sourceColumn": "Product ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Market ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "d301a9d4-8c83-40a1-8e17-9641aa7b87a5",
+            "sourceColumn": "Market ID",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "c36f8675-ad73-4c16-9680-3f3da8fb86fd",
+        "partitions": [
+          {
+            "name": "FACT_Order_Data",
+            "mode": "import",
+            "queryGroup": "FACT",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Folder.Files(dataSource &\"\\order_data\"),",
+                "    #\"Filtered Hidden Files1\" = Table.SelectRows(Source, each [Attributes]?[Hidden]? <> true),",
+                "    #\"Invoke Custom Function1\" = Table.AddColumn(#\"Filtered Hidden Files1\", \"Transform File\", each #\"Transform File\"([Content])),",
+                "    #\"Renamed Columns1\" = Table.RenameColumns(#\"Invoke Custom Function1\", {\"Name\", \"Source.Name\"}),",
+                "    #\"Removed Other Columns1\" = Table.SelectColumns(#\"Renamed Columns1\", {\"Source.Name\", \"Transform File\"}),",
+                "    #\"Expanded Table Column1\" = Table.ExpandTableColumn(#\"Removed Other Columns1\", \"Transform File\", Table.ColumnNames(#\"Transform File\"(#\"Sample File\"))),",
+                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Expanded Table Column1\",\".\",\",\",Replacer.ReplaceText,{\"Column4\"}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Replaced Value\",{{\"Source.Name\", type text}, {\"Column1\", type text}, {\"Column2\", type date}, {\"Column3\", type text}, {\"Column4\", type number}, {\"Column5\", type text}}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"Column1\", \"Market Code\"}, {\"Column2\", \"Order Date\"}, {\"Column3\", \"SAP Account Code\"}, {\"Column4\", \"Quantity\"}, {\"Column5\", \"Product Code\"}}),",
+                "    #\"Duplicated Column\" = Table.DuplicateColumn(#\"Renamed Columns\", \"Market Code\", \"Market Code - Helper\"),",
+                "    #\"Calculated Text Length\" = Table.TransformColumns(#\"Duplicated Column\",{{\"Market Code - Helper\", Text.Length, Int64.Type}}),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Calculated Text Length\", each ([#\"Market Code - Helper\"] = 2)),",
+                "    #\"Merged Queries\" = Table.NestedJoin(#\"Filtered Rows\", {\"Market Code\"}, DIM_Markets, {\"Market Code\"}, \"DIM_Market_Code\", JoinKind.LeftOuter),",
+                "    #\"Expanded DIM_Market_Code\" = Table.ExpandTableColumn(#\"Merged Queries\", \"DIM_Market_Code\", {\"Market ID\"}, {\"Market ID\"}),",
+                "    #\"Merged Queries1\" = Table.NestedJoin(#\"Expanded DIM_Market_Code\", {\"SAP Account Code\"}, DIM_SAP_Account, {\"SAP Account Code\"}, \"DIM_SAP_Account\", JoinKind.LeftOuter),",
+                "    #\"Expanded DIM_SAP_Account\" = Table.ExpandTableColumn(#\"Merged Queries1\", \"DIM_SAP_Account\", {\"SAP Account ID\"}, {\"SAP Account ID\"}),",
+                "    #\"Merged Queries2\" = Table.NestedJoin(#\"Expanded DIM_SAP_Account\", {\"Product Code\"}, DIM_Product, {\"Product Code\"}, \"DIM_Product\", JoinKind.LeftOuter),",
+                "    #\"Expanded DIM_Product\" = Table.ExpandTableColumn(#\"Merged Queries2\", \"DIM_Product\", {\"Product ID\"}, {\"Product ID\"}),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Expanded DIM_Product\",{\"Order Date\", \"Quantity\", \"Market ID\", \"SAP Account ID\", \"Product ID\"})",
+                "in",
+                "    #\"Removed Other Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DateTableTemplate_823263a9-eb37-4896-acf6-2e03f53613ea",
+        "annotations": [
+          {
+            "name": "__PBI_TemplateDateTable",
+            "value": "true"
+          },
+          {
+            "name": "DefaultItem",
+            "value": "DateHierarchy"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "9e6600cc-1870-43a3-9d30-911cdee5df9b",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "83811a66-4ab7-4014-9928-f8a044389281",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "ae75ede6-e598-4f12-bc2f-9037283cf361",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "374af1f6-6a69-4cfa-900a-d89efeb4be0c",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "20bf41e1-5443-48af-8dcf-95c0ce990b86",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "f5a898b8-feae-4bfd-8ef1-1c8524e7340a",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "c32e669e-7534-4e6c-b4bf-96c012d8c849",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "6e89fca0-1064-4c51-a297-0084a126ac63",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "7749c735-588b-4dbc-8bb7-34a92056b051",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "f4ad0110-8ff0-460d-a2d3-a8727fe8b875",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "2233459f-2c7a-47e9-97ad-d3184e0f2432",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "d88430d1-c424-4a36-a0c0-652cd0537d91"
+          }
+        ],
+        "isHidden": true,
+        "isPrivate": true,
+        "lineageTag": "7b9b3dad-be4b-43f9-8442-c7e4b14dcca2",
+        "partitions": [
+          {
+            "name": "DateTableTemplate_823263a9-eb37-4896-acf6-2e03f53613ea",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(2015,1,1), Date(2015,1,1))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "FACT_Financial_Data",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "isHidden": true,
+            "lineageTag": "1afcac15-7e0a-4551-93fa-b0eab9dddd67",
+            "sourceColumn": "Date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Value",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "c81b17ff-525a-460c-ae7a-fd9f19260ca1",
+            "sourceColumn": "Value",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Type ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "3dd603a4-84f9-43ee-9728-537c2d5da58f",
+            "sourceColumn": "Type ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Market ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "0766540a-e894-42a3-aef7-327b8a3d25f2",
+            "sourceColumn": "Market ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Subcategory ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "216dee48-2ee3-4edd-b94e-181741adb829",
+            "sourceColumn": "Subcategory ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Account ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "d3e0f125-9cc1-49b2-b317-49bbba00d1d7",
+            "sourceColumn": "Account ID",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "8d4ad0f6-9bc6-4d35-a876-120527946d6e",
+        "partitions": [
+          {
+            "name": "FACT_Financial_Data",
+            "mode": "import",
+            "queryGroup": "FACT",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Sql.Database(\"futurecollarscase.database.windows.net\", \"case5\"),",
+                "    dbo_Financial_Data = Source{[Schema=\"dbo\",Item=\"Financial_Data\"]}[Data],",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(dbo_Financial_Data,{{\"Date\", type date}, {\"Account\", Int64.Type}}),",
+                "    #\"Merged Queries\" = Table.NestedJoin(#\"Changed Type\", {\"Type\"}, DIM_Type, {\"Type\"}, \"DIM_Types\", JoinKind.LeftOuter),",
+                "    #\"Expanded DIM_Types\" = Table.ExpandTableColumn(#\"Merged Queries\", \"DIM_Types\", {\"Type ID\"}, {\"Type ID\"}),",
+                "    #\"Merged Queries1\" = Table.NestedJoin(#\"Expanded DIM_Types\", {\"Market Name\"}, DIM_Markets, {\"Market\"}, \"DIM_Market\", JoinKind.LeftOuter),",
+                "    #\"Expanded DIM_Market\" = Table.ExpandTableColumn(#\"Merged Queries1\", \"DIM_Market\", {\"Market ID\"}, {\"Market ID\"}),",
+                "    #\"Merged Queries2\" = Table.NestedJoin(#\"Expanded DIM_Market\", {\"Subcategory\"}, DIM_Subcategory, {\"Sub Category\"}, \"DIM_Subcategory\", JoinKind.LeftOuter),",
+                "    #\"Expanded DIM_Subcategory\" = Table.ExpandTableColumn(#\"Merged Queries2\", \"DIM_Subcategory\", {\"Subcategory ID\"}, {\"Subcategory ID\"}),",
+                "    #\"Merged Queries3\" = Table.NestedJoin(#\"Expanded DIM_Subcategory\", {\"Account\"}, DIM_Accounts, {\"Code\"}, \"DIM_Account\", JoinKind.LeftOuter),",
+                "    #\"Expanded DIM_Account\" = Table.ExpandTableColumn(#\"Merged Queries3\", \"DIM_Account\", {\"Account ID\"}, {\"Account ID\"}),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Expanded DIM_Account\",{\"Date\", \"Value\", \"Type ID\", \"Market ID\", \"Subcategory ID\", \"Account ID\"})",
+                "in",
+                "    #\"Removed Other Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DIM_Type",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9776db71-3bb2-4c4d-8dbd-6f97298cda62",
+            "sourceColumn": "Type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Type ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "c65fe507-094c-4007-a8f6-4ed2936e42c3",
+            "sourceColumn": "Type ID",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "e3b4601c-76dd-48e9-beb6-19554df421fe",
+        "partitions": [
+          {
+            "name": "DIM_Type",
+            "mode": "import",
+            "queryGroup": "DIM",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Sql.Database(\"futurecollarscase.database.windows.net\", \"case5\"),",
+                "    dbo_Financial_Data = Source{[Schema=\"dbo\",Item=\"Financial_Data\"]}[Data],",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(dbo_Financial_Data,{{\"Account\", Int64.Type}, {\"Date\", type date}}),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Changed Type\",{\"Type\"}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Removed Other Columns\"),",
+                "    #\"Added Index\" = Table.AddIndexColumn(#\"Removed Duplicates\", \"Index\", 1, 1, Int64.Type),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Added Index\",{{\"Index\", \"Type ID\"}})",
+                "in",
+                "    #\"Renamed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DIM_Subcategory",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Portfolio",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "68ed065f-1976-49d0-8a42-bbcd231bfaf8",
+            "sourceColumn": "Portfolio",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Subcategory",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ffdb23de-3589-42b5-88f7-5225fbfbfd57",
+            "sourceColumn": "Subcategory",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Category",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0bca234f-a4f1-4da9-96ce-4e6af0409d77",
+            "sourceColumn": "Category",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Subcategory ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "9a3aad91-8b68-4b33-81d0-2f72ace89049",
+            "sourceColumn": "Subcategory ID",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "cc5fe61a-6e28-4bb1-b85d-3145284a2cb7",
+        "partitions": [
+          {
+            "name": "DIM_Subcategory",
+            "mode": "import",
+            "queryGroup": "DIM",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(dataSource & \"\\Product Structure.xls\"), null, true),",
+                "    Mapping1 = Source{[Name=\"Mapping\"]}[Data],",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Mapping1,{{\"Column1\", type text}, {\"Column2\", type text}, {\"Column3\", type text}}),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Portfolio\", type text}, {\"Sub Category\", type text}, {\"Category\", type text}}),",
+                "    #\"Added Index\" = Table.AddIndexColumn(#\"Changed Type1\", \"Index\", 1, 1, Int64.Type),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Added Index\",{{\"Index\", \"Subcategory ID\"}, {\"Sub Category\", \"Subcategory\"}})",
+                "in",
+                "    #\"Renamed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DIM_Date",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "eb7856e3c6e24faf9b00de725d370977"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isCustom\":true}"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy-mm-dd",
+            "isDataTypeInferred": true,
+            "isKey": true,
+            "isNameInferred": true,
+            "lineageTag": "d6c6ff2f-13ab-4200-8e10-f476e04ad418",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "296aa521-9c0e-4c81-a19a-71b90ca80474",
+            "sourceColumn": "[Year]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "2b07d6b7-4277-4bec-91aa-1bb2dbd1c0da",
+            "sourceColumn": "[Quarter]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "dcf0f4d8-a829-493c-8cdf-73068986610f",
+            "sourceColumn": "[Month]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Month Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "26cfcd5a-5499-4a54-9dca-171ddf2b1a14",
+            "sortByColumn": "Month",
+            "sourceColumn": "[Month Name]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "19187da1-e5f9-4597-9c3a-f7dd80ee743e",
+            "sourceColumn": "[Day]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "dataCategory": "Time",
+        "hierarchies": [
+          {
+            "name": "Year Hierarchy",
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "70b438f4-5392-4915-9bca-ffef79894899",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "ca575815-9d24-4784-9bfc-7f2f1221c421",
+                "ordinal": 1
+              },
+              {
+                "name": "Month Name",
+                "column": "Month Name",
+                "lineageTag": "ea0ac0a5-c450-4bba-8a67-fad9b5e2bdbf",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "0b37ed1a-582e-41d4-b499-fc98619394ad",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "4eca7071-83f3-4a46-89c6-c40317574064"
+          }
+        ],
+        "lineageTag": "e264d529-04ef-4fb9-bf3f-e2d7120eadc8",
+        "partitions": [
+          {
+            "name": "DIM_Date",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "",
+                "ADDCOLUMNS(",
+                "    CALENDARAUTO(),",
+                "    \"Year\", YEAR([Date]),",
+                "    \"Quarter\", FORMAT([Date],\"\\QQ\"),",
+                "    \"Month\", MONTH([Date]),",
+                "    \"Month Name\", FORMAT([Date], \"mmm\"),",
+                "    \"Day\", DAY([Date])",
+                ")"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DIM_Mapping",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Product Code",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "affadee0-1c69-44ff-af77-1fa8e077e534",
+            "sourceColumn": "Product Code",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Subcategory ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "c0599d3c-d905-498b-82eb-69bba002caef",
+            "sourceColumn": "Subcategory ID",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "eaae7dbc-eea5-44e8-af52-d62f4a9d144d",
+        "partitions": [
+          {
+            "name": "DIM_Mapping",
+            "mode": "import",
+            "queryGroup": "DIM",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(dataSource &\"\\Mapping.txt\"),[Delimiter=\"\t\", Columns=2, Encoding=1250, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Subcategory\", type text}, {\"Product Code\", type text}}),",
+                "    #\"Merged Queries\" = Table.NestedJoin(#\"Changed Type\", {\"Subcategory\"}, DIM_Subcategory, {\"Subcategory\"}, \"DIM_Subcategory\", JoinKind.LeftOuter),",
+                "    #\"Expanded DIM_Subcategory\" = Table.ExpandTableColumn(#\"Merged Queries\", \"DIM_Subcategory\", {\"Subcategory ID\"}, {\"Subcategory ID\"}),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Expanded DIM_Subcategory\",{\"Product Code\", \"Subcategory ID\"}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Removed Other Columns\")",
+                "in",
+                "    #\"Removed Duplicates\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "_Measures",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "lineageTag": "7d4e61d6-b99c-42a2-9f5f-91026f85a114",
+        "measures": [
+          {
+            "name": "Orders Quantity",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isCustom\":true}"
+              }
+            ],
+            "displayFolder": "Orders\\Quantity",
+            "expression": [
+              "",
+              "SUM ( FACT_Order_Data[Quantity] )"
+            ],
+            "formatString": "#,##0 ",
+            "lineageTag": "b5eb3a45-ce19-4d2d-9c05-692d5e95582d"
+          },
+          {
+            "name": "Orders Quantity MTD",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Orders\\Quantity",
+            "expression": [
+              "",
+              "TOTALMTD ( [Orders Quantity], DIM_Date[Date] )"
+            ],
+            "lineageTag": "06a86c86-ebd5-4cc6-a9c4-2cc30064c3f2"
+          },
+          {
+            "name": "Orders Quantity QTD",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Orders\\Quantity",
+            "expression": [
+              "",
+              "TOTALQTD ( [Orders Quantity], DIM_Date[Date] )"
+            ],
+            "lineageTag": "41cbf8ff-bc83-4524-a813-d240cbb8cbdd"
+          },
+          {
+            "name": "Orders Quantity YTD",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Orders\\Quantity",
+            "expression": [
+              "",
+              "TOTALYTD ( [Orders Quantity], DIM_Date[Date] )"
+            ],
+            "lineageTag": "ac235322-0937-4f5f-9492-5ef0e36ae869"
+          },
+          {
+            "name": "Orders Quantity PY",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Orders\\Quantity",
+            "expression": [
+              "",
+              "CALCULATE (",
+              "    [Orders Switch Time Interval Value],",
+              "    PARALLELPERIOD ( DIM_Date[Date], -1, YEAR )",
+              ")"
+            ],
+            "lineageTag": "e25b7007-3cbe-4bdf-82db-b458bdb49bbe"
+          },
+          {
+            "name": "Orders Quantity LFL",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Orders\\Quantity",
+            "expression": [
+              "",
+              "CALCULATE (",
+              "    [Orders Switch Time Interval Value],",
+              "    DATEADD ( DIM_Date[Date], -364, DAY )",
+              ")"
+            ],
+            "lineageTag": "b67b2be5-4f75-472d-97a4-228d4f56c639"
+          },
+          {
+            "name": "Time Interval Selector",
+            "displayFolder": "Selectors",
+            "expression": [
+              "",
+              "SELECTEDVALUE ( 'Time Interval Switch'[ID] )"
+            ],
+            "formatString": "0",
+            "lineageTag": "0adf0428-4b53-4424-8ab9-6ce50825e414"
+          },
+          {
+            "name": "LFL/PY Selector",
+            "displayFolder": "Selectors",
+            "expression": [
+              "",
+              "SELECTEDVALUE ( 'LFL/PY Switch'[ID] )"
+            ],
+            "formatString": "0",
+            "lineageTag": "6851a424-9e6c-4e86-af2c-e5c6fede61e9"
+          },
+          {
+            "name": "LFL/PY Value",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isCustom\":true}"
+              }
+            ],
+            "displayFolder": "Orders\\LFL/PY",
+            "expression": [
+              "",
+              "SWITCH ( [LFL/PY Selector], 1, [Orders Quantity LFL], 2, [Orders Quantity PY] )"
+            ],
+            "formatString": "#,##0 ",
+            "lineageTag": "1bdb8aa3-3ee2-4035-a709-2d5374d94bda"
+          },
+          {
+            "name": "Orders Switch Time Interval Value",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Orders\\Quantity",
+            "expression": [
+              "",
+              "SWITCH (",
+              "    [Time Interval Selector],",
+              "    1, [Orders Quantity],",
+              "    2, [Orders Quantity MTD],",
+              "    3, [Orders Quantity QTD],",
+              "    4, [Orders Quantity YTD]",
+              ")"
+            ],
+            "lineageTag": "b0695c99-c487-48b1-b122-59584c9a19b4"
+          },
+          {
+            "name": "LFL/PY Text",
+            "displayFolder": "Selectors",
+            "expression": [
+              "",
+              "SELECTEDVALUE ( 'LFL/PY Switch'[Header] )"
+            ],
+            "lineageTag": "25c1cd28-91da-4d05-b072-dac99b3bccd5"
+          },
+          {
+            "name": "LFL/PY vs Current Orders Qty Diff",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isCustom\":true}"
+              }
+            ],
+            "displayFolder": "Orders\\LFL/PY",
+            "expression": [
+              "",
+              "[Orders Quantity] - [LFL/PY Value]"
+            ],
+            "formatString": "+#,0;-#,0;#,0;",
+            "lineageTag": "8c428f2c-d0e7-4fa8-bbcd-e0b6edcad261"
+          },
+          {
+            "name": "LFL/PY vs Current Orders Qty Diff %",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isCustom\":true}"
+              }
+            ],
+            "displayFolder": "Orders\\LFL/PY",
+            "expression": [
+              "",
+              "IF (",
+              "    NOT (",
+              "        ISBLANK ( [LFL/PY Value] )",
+              "            || [LFL/PY Value] == 0",
+              "    ),",
+              "    DIVIDE ( [Orders Quantity], [LFL/PY Value] ) - 1,",
+              "    BLANK ()",
+              ")"
+            ],
+            "formatString": "+0.0%;-0.0%;0.0%",
+            "lineageTag": "12878ebc-32e0-478e-a443-3d68e051397a"
+          },
+          {
+            "name": "LFL/PY Subcategory Chart Title",
+            "displayFolder": "Text",
+            "expression": [
+              "",
+              "SELECTEDVALUE ( 'LFL/PY Switch'[Subcategory Chart Header] )"
+            ],
+            "lineageTag": "a058873d-4f43-4eb7-8155-b82202db6840"
+          },
+          {
+            "name": "LFL/PY Market Chart Title",
+            "displayFolder": "Text",
+            "expression": [
+              "",
+              "SELECTEDVALUE ( 'LFL/PY Switch'[Market Chart Header] )"
+            ],
+            "lineageTag": "623c2195-1c87-40c3-a0b1-23dfbc0d54ad"
+          },
+          {
+            "name": "Financial Value Budget",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Financial\\Budget",
+            "expression": [
+              "",
+              "CALCULATE ( SUM ( FACT_Financial_Data[Value] ), DIM_Type[Type] = \"Budget\" )"
+            ],
+            "lineageTag": "867a36da-a6e6-4303-85af-c59ff101ae3a"
+          },
+          {
+            "name": "Financial Value Act-For",
+            "displayFolder": "Financial\\Act-For",
+            "expression": [
+              "",
+              "IF (",
+              "    MAX ( FACT_Financial_Data[Date] ) > [Act-For Border Date],",
+              "    [Financial Value Forecast],",
+              "    [Financial Value Actuals]",
+              ")"
+            ],
+            "formatString": "0.0",
+            "lineageTag": "3f0c310a-f255-465c-8d64-b2ab877aa6c0"
+          },
+          {
+            "name": "Financial Value Actuals",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Financial\\Act-For",
+            "expression": [
+              "",
+              "CALCULATE ( SUM ( FACT_Financial_Data[Value] ), DIM_Type[Type] = \"Actuals\" )"
+            ],
+            "lineageTag": "d3278a0a-e59d-4789-95f0-0abdef9d6b57"
+          },
+          {
+            "name": "Financial Value Forecast",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Financial\\Act-For",
+            "expression": [
+              "",
+              "CALCULATE ( SUM ( FACT_Financial_Data[Value] ), DIM_Type[Type] = \"Forecast\" )"
+            ],
+            "lineageTag": "1f769636-d0f7-402e-afaa-91d16f8b37bd"
+          },
+          {
+            "name": "Financial Value Budget vs Act-For diff",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isCustom\":true}"
+              }
+            ],
+            "displayFolder": "Financial\\Diff",
+            "expression": [
+              "",
+              "[Financial Value Budget Switch Time Interval Value] - [Financial Value Act-For Switch Time Interval Value]"
+            ],
+            "formatString": "+#,##0;-#,##0 ;#,##0 ",
+            "lineageTag": "0e137642-f147-434f-ab01-687c0ecf9d86"
+          },
+          {
+            "name": "Financial Value Budget vs Act-For diff %",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isCustom\":true}"
+              }
+            ],
+            "displayFolder": "Financial\\Diff",
+            "expression": [
+              "",
+              "IF(NOT(ISBLANK([Financial Value Act-For])),",
+              "DIVIDE (",
+              "    [Financial Value Budget Switch Time Interval Value],",
+              "    [Financial Value Act-For Switch Time Interval Value]",
+              ") - 1,",
+              "BLANK()",
+              ")"
+            ],
+            "formatString": "+0.0%;-0.0%;0.0%",
+            "lineageTag": "d9e89f42-5506-4b36-a0cb-11c14dba227c"
+          },
+          {
+            "name": "Financial Value Act-For MTD",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Financial\\Act-For",
+            "expression": [
+              "",
+              "TOTALMTD ( [Financial Value Act-For], DIM_Date[Date] )"
+            ],
+            "lineageTag": "2071400c-10eb-427d-843f-e5453f490aa7"
+          },
+          {
+            "name": "Financial Value Act-For QTD",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Financial\\Act-For",
+            "expression": [
+              "",
+              "TOTALQTD ( [Financial Value Act-For], DIM_Date[Date] )"
+            ],
+            "lineageTag": "1bb6d361-7f46-4e8b-9ab0-83b42d778300"
+          },
+          {
+            "name": "Financial Value Act-For YTD",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Financial\\Act-For",
+            "expression": [
+              "",
+              "TOTALYTD ( [Financial Value Act-For], DIM_Date[Date] )"
+            ],
+            "lineageTag": "22cf8ed9-8ad9-43ef-80ae-05cd1768f570"
+          },
+          {
+            "name": "Financial Value Budget MTD",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Financial\\Budget",
+            "expression": [
+              "",
+              "TOTALMTD ( [Financial Value Budget], DIM_Date[Date] )"
+            ],
+            "lineageTag": "fa63c90e-28ab-48b8-a8db-99cffc59a11e"
+          },
+          {
+            "name": "Financial Value Budget QTD",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Financial\\Budget",
+            "expression": [
+              "",
+              "TOTALQTD ( [Financial Value Budget], DIM_Date[Date] )"
+            ],
+            "lineageTag": "558b9097-af0e-4cbe-b8ce-4f427da83f32"
+          },
+          {
+            "name": "Financial Value Budget YTD",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Financial\\Budget",
+            "expression": [
+              "",
+              "TOTALYTD ( [Financial Value Budget], DIM_Date[Date] )"
+            ],
+            "lineageTag": "10cbcb6a-1639-4f17-9214-c089478895e7"
+          },
+          {
+            "name": "Financial Value Act-For Switch Time Interval Value",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isCustom\":true}"
+              }
+            ],
+            "displayFolder": "Financial\\Act-For",
+            "expression": [
+              "",
+              "IF (",
+              "    NOT ( ISBLANK ( [Financial Value Act-For] ) ),",
+              "    SWITCH (",
+              "        [Time Interval Selector],",
+              "        1, [Financial Value Act-For],",
+              "        2, [Financial Value Act-For MTD],",
+              "        3, [Financial Value Act-For QTD],",
+              "        4, [Financial Value Act-For YTD]",
+              "    ),",
+              "    BLANK ()",
+              ")"
+            ],
+            "formatString": "#,##0 ",
+            "lineageTag": "1014c730-9866-4e85-b921-30b27c14b504"
+          },
+          {
+            "name": "Financial Value Budget Switch Time Interval Value",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isCustom\":true}"
+              }
+            ],
+            "displayFolder": "Financial\\Budget",
+            "expression": [
+              "",
+              "IF (",
+              "    NOT ( ISBLANK ( [Financial Value Budget] ) ),",
+              "    SWITCH (",
+              "        [Time Interval Selector],",
+              "        1, [Financial Value Budget],",
+              "        2, [Financial Value Budget MTD],",
+              "        3, [Financial Value Budget QTD],",
+              "        4, [Financial Value Budget YTD]",
+              "    ),",
+              "    BLANK ()",
+              ")"
+            ],
+            "formatString": "#,##0 ",
+            "lineageTag": "0595e72d-43e1-4252-8d9e-0b9c6b3b1a3c"
+          },
+          {
+            "name": "Act-For Border Date",
+            "displayFolder": "Financial\\Act-For",
+            "expression": [
+              "",
+              "DATE ( 2021, 3, 31 )"
+            ],
+            "formatString": "General Date",
+            "lineageTag": "d4808aec-27cb-42a3-9bee-05a9da08a746"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "_Measures",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i44FAA==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"Column1\"})",
+                "in",
+                "    #\"Removed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LFL/PY Switch",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "cb8fc1ab4d8244bb9a78e225d582d1a4"
+          }
+        ],
+        "columns": [
+          {
+            "name": "ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": false,
+            "lineageTag": "be0dafea-0b3a-4d66-b9ff-4d3ed59cb0af",
+            "sourceColumn": "[Value1]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": false,
+            "lineageTag": "55c35616-eab3-4daa-afd8-175394a776ef",
+            "sourceColumn": "[Value2]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Header",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": false,
+            "lineageTag": "a0226fbc-519b-47ad-84e9-27e6f03b8c5c",
+            "sourceColumn": "[Value3]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Subcategory Chart Header",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": false,
+            "lineageTag": "b01d3e4f-bc2e-47c5-a7a8-8702ef3f8485",
+            "sourceColumn": "[Value4]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Market Chart Header",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": false,
+            "lineageTag": "1a8b89fc-b26e-410f-a3b3-72e01f7554b7",
+            "sourceColumn": "[Value5]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "59d6cde6-0a01-4504-8809-891039c230b3",
+        "partitions": [
+          {
+            "name": "LFL/PY Switch",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "",
+                "{",
+                "    (1, \"LFL\", \"LFL Orders Quantity\", \"Orders Quantity vs LFL by Subcategory\", \"Orders Quantity vs LFL by Market\"),",
+                "    (2, \"PY\", \"PY Orders Quantity\", \"Orders Quantity vs PY by Subcategory\", \"Orders Quantity vs PY by Market\")",
+                "}",
+                ""
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Time Interval Switch",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "7d0da5b6c28043118c929c49ef0fc14f"
+          }
+        ],
+        "columns": [
+          {
+            "name": "ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": false,
+            "lineageTag": "a0a039f4-1c18-4fbb-858b-e8195077b1b1",
+            "sourceColumn": "[Value1]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": false,
+            "lineageTag": "c13563eb-62f4-42ae-a236-de9090371990",
+            "sourceColumn": "[Value2]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "64e69751-48c0-4d40-82bc-280e1de7c63b",
+        "partitions": [
+          {
+            "name": "Time Interval Switch",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "",
+                "{",
+                "    (1, \"Daily\"),",
+                "    (2, \"MTD\"),",
+                "    (3, \"QTD\"),",
+                "    (4, \"YTD\")",
+                "}"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DIM_Markets",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Area",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "176becf4-df25-4067-b050-b9d4dd0b7c98",
+            "sourceColumn": "Area",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Market",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "SortByColumn"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "bb95cba5-2f4a-4bd8-b748-c56af8855621",
+            "sortByColumn": "Order for Market",
+            "sourceColumn": "Market",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Market Cluster",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f2cde73c-2987-4864-a789-7306560da445",
+            "sourceColumn": "Market Cluster",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Order for Market",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d57ac523-fe35-4e0d-8a14-0830042c403a",
+            "sourceColumn": "Order for Market",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Market Code",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "aadba046-2fbc-49a8-a011-de9db1a03452",
+            "sourceColumn": "Market Code",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Market ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "7a86a5b9-3937-46ba-8288-a7f35d7c438e",
+            "sourceColumn": "Market ID",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "301d916f-058b-4eb6-b164-ba6295e11115",
+        "partitions": [
+          {
+            "name": "DIM_Markets",
+            "mode": "import",
+            "queryGroup": "DIM",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(dataSource & \"\\Master Data.xlsx\"), null, true),",
+                "    Markets_Sheet = Source{[Item=\"Markets\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Markets_Sheet, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Area\", type text}, {\"Market\", type text}, {\"Market Cluster\", type text}, {\"Order for Market\", Int64.Type}, {\"Market Code\", type text}}),",
+                "    #\"Added Index\" = Table.AddIndexColumn(#\"Changed Type\", \"Market ID\", 1, 1, Int64.Type)",
+                "in",
+                "    #\"Added Index\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DIM_Accounts",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Account",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ccb7fc4b-ed4c-4b91-86ab-c5b9df89a60f",
+            "sourceColumn": "Account",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Code",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e521077c-b735-4e0b-a64e-75a168413a6e",
+            "sourceColumn": "Code",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Account ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "eb962ab1-0367-417e-8b9b-79ca0e0f9536",
+            "sourceColumn": "Account ID",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "ff4663e5-131e-4252-abdb-f78d53ed24ae",
+        "partitions": [
+          {
+            "name": "DIM_Accounts",
+            "mode": "import",
+            "queryGroup": "DIM",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(dataSource &\"\\Master Data.xlsx\"), null, true),",
+                "    Accounts_Sheet = Source{[Item=\"Accounts\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Accounts_Sheet, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Name\", type text}, {\"Code\", Int64.Type}}),",
+                "    #\"Added Index\" = Table.AddIndexColumn(#\"Changed Type\", \"Account ID\", 1, 1, Int64.Type),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Added Index\",{{\"Name\", \"Account\"}})",
+                "in",
+                "    #\"Renamed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DIM_SAP_Account",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "SAP Account Code",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3ab62754-ac29-4f4d-8e42-7819f9d87a16",
+            "sourceColumn": "SAP Account Code",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "SAP Account ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "33069e5f-2a63-4510-ac49-dce198c3150f",
+            "sourceColumn": "SAP Account ID",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "992048b9-b97e-4a50-b412-ae1936d932b5",
+        "partitions": [
+          {
+            "name": "DIM_SAP_Account",
+            "mode": "import",
+            "queryGroup": "DIM",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Folder.Files(dataSource &\"\\order_data\"),",
+                "    #\"Filtered Hidden Files1\" = Table.SelectRows(Source, each [Attributes]?[Hidden]? <> true),",
+                "    #\"Invoke Custom Function1\" = Table.AddColumn(#\"Filtered Hidden Files1\", \"Transform File\", each #\"Transform File\"([Content])),",
+                "    #\"Renamed Columns1\" = Table.RenameColumns(#\"Invoke Custom Function1\", {\"Name\", \"Source.Name\"}),",
+                "    #\"Removed Other Columns1\" = Table.SelectColumns(#\"Renamed Columns1\", {\"Source.Name\", \"Transform File\"}),",
+                "    #\"Expanded Table Column1\" = Table.ExpandTableColumn(#\"Removed Other Columns1\", \"Transform File\", Table.ColumnNames(#\"Transform File\"(#\"Sample File\"))),",
+                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Expanded Table Column1\",\".\",\",\",Replacer.ReplaceText,{\"Column4\"}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Replaced Value\",{{\"Source.Name\", type text}, {\"Column1\", type text}, {\"Column2\", type date}, {\"Column3\", type text}, {\"Column4\", type number}, {\"Column5\", type text}}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"Column1\", \"Market Code\"}, {\"Column2\", \"Order Date\"}, {\"Column3\", \"SAP Account Code\"}, {\"Column4\", \"Quantity\"}, {\"Column5\", \"Product Code\"}}),",
+                "    #\"Duplicated Column\" = Table.DuplicateColumn(#\"Renamed Columns\", \"Market Code\", \"Market Code - Helper\"),",
+                "    #\"Calculated Text Length\" = Table.TransformColumns(#\"Duplicated Column\",{{\"Market Code - Helper\", Text.Length, Int64.Type}}),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Calculated Text Length\", each ([#\"Market Code - Helper\"] = 2)),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Filtered Rows\",{\"SAP Account Code\"}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Removed Other Columns\"),",
+                "    #\"Added Index\" = Table.AddIndexColumn(#\"Removed Duplicates\", \"Index\", 1, 1, Int64.Type),",
+                "    #\"Renamed Columns2\" = Table.RenameColumns(#\"Added Index\",{{\"Index\", \"SAP Account ID\"}})",
+                "in",
+                "    #\"Renamed Columns2\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DIM_Product",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Product Code",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "fe96d947-5644-40be-822a-d458916d19b2",
+            "sourceColumn": "Product Code",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Product ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "1309fc54-83ba-4c33-869a-bd97bf94960b",
+            "sourceColumn": "Product ID",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "12a41b22-edfd-49fa-8e16-fc2466ceda66",
+        "partitions": [
+          {
+            "name": "DIM_Product",
+            "mode": "import",
+            "queryGroup": "DIM",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Folder.Files(dataSource &\"\\order_data\"),",
+                "    #\"Filtered Hidden Files1\" = Table.SelectRows(Source, each [Attributes]?[Hidden]? <> true),",
+                "    #\"Invoke Custom Function1\" = Table.AddColumn(#\"Filtered Hidden Files1\", \"Transform File\", each #\"Transform File\"([Content])),",
+                "    #\"Renamed Columns1\" = Table.RenameColumns(#\"Invoke Custom Function1\", {\"Name\", \"Source.Name\"}),",
+                "    #\"Removed Other Columns1\" = Table.SelectColumns(#\"Renamed Columns1\", {\"Source.Name\", \"Transform File\"}),",
+                "    #\"Expanded Table Column1\" = Table.ExpandTableColumn(#\"Removed Other Columns1\", \"Transform File\", Table.ColumnNames(#\"Transform File\"(#\"Sample File\"))),",
+                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Expanded Table Column1\",\".\",\",\",Replacer.ReplaceText,{\"Column4\"}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Replaced Value\",{{\"Source.Name\", type text}, {\"Column1\", type text}, {\"Column2\", type date}, {\"Column3\", type text}, {\"Column4\", type number}, {\"Column5\", type text}}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"Column1\", \"Market Code\"}, {\"Column2\", \"Order Date\"}, {\"Column3\", \"SAP Account Code\"}, {\"Column4\", \"Quantity\"}, {\"Column5\", \"Product Code\"}}),",
+                "    #\"Duplicated Column\" = Table.DuplicateColumn(#\"Renamed Columns\", \"Market Code\", \"Market Code - Helper\"),",
+                "    #\"Calculated Text Length\" = Table.TransformColumns(#\"Duplicated Column\",{{\"Market Code - Helper\", Text.Length, Int64.Type}}),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Calculated Text Length\", each ([#\"Market Code - Helper\"] = 2)),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Filtered Rows\",{\"Product Code\"}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Removed Other Columns\"),",
+                "    #\"Added Index\" = Table.AddIndexColumn(#\"Removed Duplicates\", \"Index\", 1, 1, Int64.Type),",
+                "    #\"Renamed Columns2\" = Table.RenameColumns(#\"Added Index\",{{\"Index\", \"Product ID\"}})",
+                "in",
+                "    #\"Renamed Columns2\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

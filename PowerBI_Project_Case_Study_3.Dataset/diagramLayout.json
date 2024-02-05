@@ -1,0 +1,191 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 267,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 617.17508130979047,
+            "y": 0
+          },
+          "nodeIndex": "DIM_Subcategory",
+          "nodeLineageTag": "cc5fe61a-6e28-4bb1-b85d-3145284a2cb7",
+          "size": {
+            "height": 190,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 18.685879010198992,
+            "y": 0
+          },
+          "nodeIndex": "DIM_Type",
+          "nodeLineageTag": "e3b4601c-76dd-48e9-beb6-19554df421fe",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 331.53348503929055,
+            "y": 438.33012173702463
+          },
+          "nodeIndex": "FACT_Financial_Data",
+          "nodeLineageTag": "8d4ad0f6-9bc6-4d35-a876-120527946d6e",
+          "size": {
+            "height": 330,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 321.53348503929055,
+            "y": 0
+          },
+          "nodeIndex": "DIM_Date",
+          "nodeLineageTag": "e264d529-04ef-4fb9-bf3f-e2d7120eadc8",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 946,
+            "y": 0
+          },
+          "nodeIndex": "DIM_Mapping",
+          "nodeLineageTag": "eaae7dbc-eea5-44e8-af52-d62f4a9d144d",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 622.53348503929055,
+            "y": 442
+          },
+          "nodeIndex": "FACT_Order_Data",
+          "nodeLineageTag": "c36f8675-ad73-4c16-9680-3f3da8fb86fd",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1919.314120989801,
+            "y": 0
+          },
+          "nodeIndex": "_Measures",
+          "nodeLineageTag": "7d4e61d6-b99c-42a2-9f5f-91026f85a114",
+          "size": {
+            "height": 399,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 1912.6282419796021,
+            "y": 581
+          },
+          "nodeIndex": "LFL/PY Switch",
+          "nodeLineageTag": "59d6cde6-0a01-4504-8809-891039c230b3",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1912.9423629694029,
+            "y": 431
+          },
+          "nodeIndex": "Time Interval Switch",
+          "nodeLineageTag": "64e69751-48c0-4d40-82bc-280e1de7c63b",
+          "size": {
+            "height": 124,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1237.6282419796021,
+            "y": 553.5
+          },
+          "nodeIndex": "DIM_Product",
+          "nodeLineageTag": "12a41b22-edfd-49fa-8e16-fc2466ceda66",
+          "size": {
+            "height": 191,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1238.6282419796021,
+            "y": 403.5
+          },
+          "nodeIndex": "DIM_SAP_Account",
+          "nodeLineageTag": "992048b9-b97e-4a50-b412-ae1936d932b5",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 1238.5706049490045,
+            "y": 0
+          },
+          "nodeIndex": "DIM_Accounts",
+          "nodeLineageTag": "ff4663e5-131e-4252-abdb-f78d53ed24ae",
+          "size": {
+            "height": 155,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1236.2564839592037,
+            "y": 171
+          },
+          "nodeIndex": "DIM_Markets",
+          "nodeLineageTag": "301d916f-058b-4eb6-b164-ba6295e11115",
+          "size": {
+            "height": 225,
+            "width": 234
+          },
+          "zIndex": 4
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}
